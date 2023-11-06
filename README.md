@@ -1,5 +1,9 @@
 # Call everybody Telegram bot
 
-## A personal project for a chat of my class in Telegram
+Аналог @all в других мессенджерах.
 
-It allows to tag everybody in a chat by tagging it in a message.
+###### Как использовать:
+1. Для начала необходимо добавить бота (https://t.me/everybody_caller_bot) в чат.
+2. Необходимо дать боту доступ к сообщениям (и желательно права администратора).
+3. Потом каждый пользователь должен ввести команду `/add`, чтобы бот узнал о его существовании в беседе.
+4. Для использования нужно отправить команду `/all` или `\call`.

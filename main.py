@@ -34,7 +34,7 @@ async def register_new_user(chat_id: str, user_id: str) -> None:
         db[chat_id] = [user_id]
 
     with open("registered_users.json", "w") as f:
-        f.write(json.dumps(db))
+        f.write(json.dumps(db, indent=4))
 
 
 @dp.message(Command("start", "help"))
