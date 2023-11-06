@@ -5,6 +5,7 @@ from aiogram.filters import Command
 from aiogram.types import Message
 from time import sleep
 from aiogram.methods.edit_message_text import EditMessageText
+from aiogram.exceptions import TelegramBadRequest
 
 
 with open("settings.json", "r") as f:
@@ -82,7 +83,11 @@ async def tagger_handler(message: Message) -> None:
     )
     sleep(3)
     msg_tagger_id = msg_tagger.message_id
-    await bot(EditMessageText(text=normal_part, chat_id=chat_id, message_id=int(msg_tagger_id)))
+
+    try:
+        await bot(EditMessageText(text=normal_part, chat_id=chat_id, message_id=int(msg_tagger_id)))
+    except TelegramBadRequest:
+        print(f"Editing message {msg_tagger_id} in chat {chat_id} has no effect.")
 
 
 @dp.message(Command("register", "add"))
