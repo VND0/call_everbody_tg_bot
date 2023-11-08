@@ -17,7 +17,7 @@ class Logger:
         self.logger.addHandler(self.handler_to_file)
 
     def make_warn_log(self, message: str) -> None:
-        self.logger.warning(message)
+        self.logger.warning(message, "WARN")
 
     def make_info_log(self, message: str) -> None:
-        self.logger.info(message)
+        self.logger.info(message, "INFO")
