@@ -6,8 +6,8 @@ class Logger:
     def __init__(self) -> None:
         self.logger_info = logging.getLogger()
         self.logger_warn = logging.getLogger()
-        self.logger_info.setLevel(logging.INFO)
-        self.logger_warn.setLevel(logging.WARNING)
+        self.logger_info.setLevel(logging.DEBUG)
+        self.logger_warn.setLevel(logging.DEBUG)
 
         self.stdout_stream = logging.StreamHandler(sys.stdout)
         self.file_stream = logging.FileHandler("in_work.log", encoding="utf-8")
