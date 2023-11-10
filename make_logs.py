@@ -6,27 +6,20 @@ class Logger:
     def __init__(self) -> None:
         self.logger_info = logging.getLogger()
         self.logger_warn = logging.getLogger()
+        self.logger_info.setLevel(logging.INFO)
+        self.logger_warn.setLevel(logging.WARNING)
 
-        self.handler_stdout_warn = logging.StreamHandler(stream=sys.stdout)
-        self.handler_to_file_warn = logging.FileHandler("in_work.log")
-        self.handler_stdout_info = logging.StreamHandler(stream=sys.stdout)
-        self.handler_to_file_info = logging.FileHandler("in_work.log")
+        self.stdout_stream = logging.StreamHandler(sys.stdout)
+        self.file_stream = logging.FileHandler("in_work.log", encoding="utf-8")
+        self.format = logging.Formatter(datefmt="%d_%m_%Y %I:%M:%S", fmt="%(asctime)s [%(levelname)s]: %(message)s")
 
-        self.formatter_info = logging.Formatter("[INFO] %d.%m.%Y %H:%M:%S %(message)s")
-        self.formatter_warn = logging.Formatter("[WARNING] %d.%m.%Y %H:%M:%S %(message)s")
+        self.stdout_stream.setFormatter(self.format)
+        self.file_stream.setFormatter(self.format)
 
-        self.handler_stdout_warn.setFormatter(self.formatter_warn)
-        self.handler_to_file_warn.setFormatter(self.formatter_warn)
-        self.handler_stdout_info.setFormatter(self.formatter_info)
-        self.handler_to_file_info.setFormatter(self.formatter_info)
-
-        self.logger_warn.addHandler(self.handler_stdout_warn)
-        self.logger_warn.addHandler(self.handler_to_file_warn)
-        self.logger_info.addHandler(self.handler_stdout_info)
-        self.logger_info.addHandler(self.handler_to_file_info)
-
-        self.logger_info.level = logging.INFO
-        self.logger_warn.level = logging.WARNING
+        self.logger_warn.addHandler(self.stdout_stream)
+        self.logger_warn.addHandler(self.file_stream)
+        self.logger_info.addHandler(self.stdout_stream)
+        self.logger_info.addHandler(self.file_stream)
 
     def make_warn_log(self, message: str) -> None:
         self.logger_warn.warning(message)

@@ -163,3 +163,4 @@ cython_debug/
 settings.json
 registered_users.json
 in_work.log
+experiments/
